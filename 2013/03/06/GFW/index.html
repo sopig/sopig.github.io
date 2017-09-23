@@ -1,20 +1,272 @@
-extends partial/layout
-
-block site_title
-    != page.title + " · " + config.title
-
-block description
-    - var desc = page.desc || page.title + ' - ' + config.author;
-    meta(name="description", content=desc)
-
-block container
-    include mixins/post
-    +post(page)
-
-block pagination
-    include mixins/paginator
-    +post()
-    include partial/comment
-
-block copyright
-    include partial/copyright
+<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><title> Markdown 标准测试 · xiao</title><meta name="description" content="A Blog Powered By Hexo"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="short icon" href="/favicon.png"><link rel="stylesheet" href="/css/jekyll.css"><!--[if lt IE 9]>
+<script src="js/html5shiv.min.js"></script>
+<script src="js/respond.min.js"></script>
+<![endif]--></head><body><header class="row-flex-row limit-width vh-center"><a href="/" class="logo"><img src="/favicon.png"></a><nav><ul class="nav-list"><li class="nav-list-item"><a href="/" class="nav-link">Home</a></li><li class="nav-list-item"><a href="/archives/" class="nav-link active">   Blog</a></li><li class="nav-list-item"><a href="https://github.com/xxxxxx" target="_blank" class="nav-link">github</a></li><li class="nav-list-item"><a href="https://coding.net/u/xxxxxx" target="_blank" class="nav-link">coding</a></li><li class="nav-list-item"><a href="http://weibo.com/xxxxxx" target="_blank" class="nav-link">weibo</a></li><li class="nav-list-item"><a href="/atom.xml" class="nav-link">rss</a></li></ul></nav></header><div class="container limit-width"><section class="row-flex-row"><div class="post"><article class="post-block"><h2 class="post-title"><a href="/2013/03/06/GFW/" class="post-title-link">Markdown 标准测试</a></h2><div class="post-meta"><ul class="post-tag-list"><li class="post-tag-item"><a href="/tags/上海/" class="post-tag-link">上海</a></li></ul><div class="post-time">Wednesday, March 6th 2013</div></div><div class="post-content"><p>##<a name="index">目录</a></p>
+<ul>
+<li><a href="#line">横线</a></li>
+<li><a href="#title">标题</a></li>
+<li><a href="#text">文本</a><ul>
+<li>普通文本</li>
+<li>单行文本</li>
+<li>多行文本</li>
+<li>文字高亮</li>
+</ul>
+</li>
+<li><a href="#link">链接</a> <ul>
+<li>文字超链接<ul>
+<li>链接外部URL</li>
+<li>链接本仓库里的URL</li>
+</ul>
+</li>
+<li>锚点</li>
+<li><a href="#piclink">图片超链接</a></li>
+</ul>
+</li>
+<li><a href="#pic">图片</a><ul>
+<li>来源于网络的图片</li>
+<li>GitHub仓库中的图片</li>
+</ul>
+</li>
+<li><a href="#dot">列表</a><ul>
+<li>圆点列表</li>
+<li>数字列表</li>
+<li>复选框列表</li>
+</ul>
+</li>
+<li><a href="#blockquotes">块引用</a></li>
+<li><a href="#code">代码</a></li>
+<li><a href="#table">表格</a> </li>
+<li><a href="#emoji">表情</a></li>
+</ul>
+<p><a name="line"></a></p>
+<p>##<em>*</em>、—、___显示虚横线</p>
+<h2 id=""><a href="#" class="headerlink" title="*"></a><em>*</em></h2><hr>
+<p><a name="title"></a></p>
+<p>#一级标题</p>
+<p>##二级标题</p>
+<p>###三级标题</p>
+<p>####四级标题</p>
+<p>#####五级标题</p>
+<p>######六级标题</p>
+<p>##<a name="text">显示文本</a></p>
+<p>###普通文本<br>这是一段普通的文本</p>
+<p>####关于换行<br>直接回车不能换行，<br><br>可以使用\<br>。<br>但是使用html标签就丧失了markdown的意义。<br>可以在上一行文本后面补两个空格，<br>这样下一行的文本就换行了。</p>
+<p>或者就是在两行文本直接加一个空行。</p>
+<p>也能实现换行效果，不过这个行间距有点大。</p>
+<p>###单行文本<br>    Hello,大家好，我是果冻虾仁。</p>
+<p>###文本块<br>    欢迎到访<br>    很高兴见到您<br>    祝您，早上好，中午好，下午好，晚安</p>
+<p>###部分文字高亮<br>Thank <code>You</code> . Please <code>Call</code> Me <code>Coder</code></p>
+<p>####高亮功能更适合做一篇文章的tag<br>例如:<br><br><code>java</code> <code>网络编程</code> <code>Socket</code> <code>全双工</code></p>
+<p>####删除线<br>这是一个 <del>删除线</del></p>
+<p>####斜体<br><em>斜体1</em></p>
+<p><em>斜体2</em></p>
+<p>####粗体<br><strong>粗体1</strong></p>
+<p><strong>粗体2</strong></p>
+<p>####组合使用粗体、斜体和删除线<br><strong><em>斜粗体1</em></strong></p>
+<p><strong><em>斜粗体2</em></strong></p>
+<p><strong><em><del>斜粗体删除线1</del></em></strong></p>
+<p><del><strong><em>斜粗体删除线2</em></strong></del></p>
+<p>##<a name="link">链接</a></p>
+<p>###链接外部URL<br><a href="http://blog.csdn.net/guodongxiaren" title="悬停显示" target="_blank" rel="external">我的博客</a>   语法如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[我的博客](http://blog.csdn.net/guodongxiaren &quot;悬停显示&quot;)</div></pre></td></tr></table></figure></p>
+<p>###链接的另一种写法<br><a href="http://blog.csdn.net/guodongxiaren" title="悬停显示" target="_blank" rel="external">我的博客</a>  </p>
+<p>语法如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">[我的博客][id]</div><div class="line">[id]:http://blog.csdn.net/guodongxiaren &quot;悬停显示&quot;</div></pre></td></tr></table></figure></p>
+<p>中括号[ ]里的id，可以是数字，字母等的组合。这两行可以不连着写，<strong>一般把第二行的链接统一放在文章末尾</strong>，id上下对应就行了。这样正文看起来会比较干净。</p>
+<p>###链接本仓库里的URL<br><a href="./Book">Book</a><br>语法如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[Book](./Book)</div></pre></td></tr></table></figure></p>
+<p>如果文件要引用的文件不存在，则待点击的文本为红色。引用的文件存在存在则文本为蓝色。</p>
+<p>###锚点<br>我们可以使用HTML的锚点标签（<code>#</code>）来设置锚点：<a href="#index">回到目录</a><br>但其实呢，每一个标题都是一个锚点，不需要用标签来指定，比如我们 <a href="#TEST">回到顶部</a><br>不过不幸的是，由于对中文支持的不好，所以中文标题貌似是不能视作标签的。</p>
+<p>##<a name="pic">显示图片</a></p>
+<p>###来源于网络的图片<br><img src="http://www.baidu.com/img/bdlogo.gif" alt="baidu" title="百度logo"><br><img src="https://assets-cdn.github.com/images/modules/contact/goldstar.gif" alt=""></p>
+<p>###GitHub仓库中的图片<br><img src="https://github.com/guodongxiaren/ImageCache/raw/master/Logo/foryou.gif" alt=""></p>
+<p>###<a name="piclink">给图片加上超链接<br><a href="http://blog.csdn.net/guodongxiaren/article/details/23690801" target="_blank" rel="external"><img src="https://github.com/guodongxiaren/ImageCache/raw/master/Logo/jianxin.jpg" alt="head" title="点击图片进入我的博客"></a></a></p>
+<p>##<a name="dot">列表</a></p>
+<p>###圆点列表</p>
+<ul>
+<li>昵称：果冻虾仁</li>
+<li>别名：隔壁老王</li>
+<li>英文名：Jelly</li>
+</ul>
+<p>###更多圆点</p>
+<ul>
+<li>编程语言<ul>
+<li>脚本语言<ul>
+<li>Python</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>###数字列表</p>
+<p>####一般效果<br>就是在数字后面加一个点，再加一个空格。不过看起来起来可能不够明显。<br>面向对象的三个基本特征：</p>
+<ol>
+<li>封装</li>
+<li>继承</li>
+<li>多态</li>
+</ol>
+<p>####数字列表自动排序<br>也可以在第一行指定<code>1.</code>，而接下来的几行用星号<code>*</code>（或者继续用数字1. ）就可以了，它会自动显示成2、3、4……。<br>面向对象的七大原则：</p>
+<ol>
+<li>开闭原则</li>
+</ol>
+<ul>
+<li>里氏转换原则</li>
+<li>依赖倒转原则</li>
+<li>接口隔离原则</li>
+<li>组合/聚合复用原则</li>
+<li>“迪米特”法则</li>
+<li>单一直则原则</li>
+</ul>
+<p>####多级数字列表<br>和圆点的列表一样，数字列表也有多级结构：  </p>
+<ol>
+<li>这是一级的数字列表，数字1还是1<ol>
+<li>这是二级的数字列表，阿拉伯数字在显示的时候变成了罗马数字<ol>
+<li>这是三级的数字列表，数字在显示的时候变成了英文字母<ol>
+<li>四级的数字列表显示效果，就不再变化了，依旧是英文字母</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+<h3 id="复选框列表"><a href="#复选框列表" class="headerlink" title="复选框列表"></a>复选框列表</h3><ul>
+<li style="list-style: none"><input type="checkbox" checked> C</li>
+<li style="list-style: none"><input type="checkbox" checked> C++</li>
+<li style="list-style: none"><input type="checkbox" checked> Java</li>
+<li style="list-style: none"><input type="checkbox" checked> Qt</li>
+<li style="list-style: none"><input type="checkbox" checked> Android</li>
+<li style="list-style: none"><input type="checkbox"> C#</li>
+<li style="list-style: none"><input type="checkbox"> .NET</li>
+</ul>
+<p>您可以使用这个功能来标注某个项目各项任务的完成情况。</p>
+<p>##<a name="blockquotes">块引用</a></p>
+<p>###常用于引用文本</p>
+<p>####文本摘自《深入理解计算机系统》P27<br>　令人吃惊的是，在哪种字节顺序是合适的这个问题上，人们表现得非常情绪化。实际上术语“little endian”（小端）和“big endian”（大端）出自Jonathan Swift的《格利佛游记》一书，其中交战的两个派别无法就应该从哪一端打开一个半熟的鸡蛋达成一致。因此，争论沦为关于社会政治的争论。只要选择了一种规则并且始终如一的坚持，其实对于哪种字节排序的选择都是任意的。</p>
+<blockquote>
+<p><b>“端”（endian）的起源</b><br><br>以下是Jonathan Swift在1726年关于大小端之争历史的描述：<br><br>“……下面我要告诉你的是，Lilliput和Blefuscu这两大强国在过去36个月里一直在苦战。战争开始是由于以下的原因：我们大家都认为，吃鸡蛋前，原始的方法是打破鸡蛋较大的一端，可是当今的皇帝的祖父小时候吃鸡蛋，一次按古法打鸡蛋时碰巧将一个手指弄破了，因此他的父亲，当时的皇帝，就下了一道敕令，命令全体臣民吃鸡蛋时打破较小的一端，违令者重罚。”</p>
+</blockquote>
+<p>###块引用有多级结构</p>
+<blockquote>
+<p>数据结构</p>
+<blockquote>
+<p>树</p>
+<blockquote>
+<p>二叉树</p>
+<blockquote>
+<p>平衡二叉树</p>
+<blockquote>
+<p>满二叉树</p>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+<p>##<a name="code">代码高亮<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[]args)</span></span>&#123;&#125; <span class="comment">//Java</span></div></pre></td></tr></table></figure></a></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> *argv[])</span> <span class="comment">//C</span></span></div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">echo</span> <span class="string">"hello GitHub"</span><span class="comment">#Bash</span></div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">document</span>.getElementById(<span class="string">"myH1"</span>).innerHTML=<span class="string">"Welcome to my Homepage"</span>; <span class="comment">//javascipt</span></div></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">string</span> &amp;<span class="keyword">operator</span>+(<span class="keyword">const</span> <span class="built_in">string</span>&amp; A,<span class="keyword">const</span> <span class="built_in">string</span>&amp; B) <span class="comment">//cpp</span></div></pre></td></tr></table></figure>
+<p>##<a name="table">显示表格<br>表头1  | 表头2<br>————- | ————-<br>Content Cell  | Content Cell<br>Content Cell  | Content Cell</a></p>
+<table>
+<thead>
+<tr>
+<th>表头1</th>
+<th>表头2</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Content Cell</td>
+<td>Content Cell</td>
+</tr>
+<tr>
+<td>Content Cell</td>
+<td>Content Cell</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>名字</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Help</td>
+<td>Display the help window.</td>
+</tr>
+<tr>
+<td>Close</td>
+<td>Closes a window</td>
+</tr>
+</tbody>
+</table>
+<p>表格中也可以使用普通文本的删除线，斜体等效果</p>
+<table>
+<thead>
+<tr>
+<th>名字</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Help</td>
+<td><del>Display the</del> help window.</td>
+</tr>
+<tr>
+<td>Close</td>
+<td><em>Closes</em> a window</td>
+</tr>
+</tbody>
+</table>
+<p>表格可以指定对齐方式</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">左对齐</th>
+<th style="text-align:center">居中</th>
+<th style="text-align:right">右对齐</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">col 3 is</td>
+<td style="text-align:center">some wordy text</td>
+<td style="text-align:right">$1600</td>
+</tr>
+<tr>
+<td style="text-align:left">col 2 is</td>
+<td style="text-align:center">centered</td>
+<td style="text-align:right">$12</td>
+</tr>
+<tr>
+<td style="text-align:left">zebra stripes</td>
+<td style="text-align:center">are neat</td>
+<td style="text-align:right">$1</td>
+</tr>
+</tbody>
+</table>
+<p>表格中嵌入图片</p>
+<table>
+<thead>
+<tr>
+<th>图片</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><img src="http://www.baidu.com/img/bdlogo.gif" alt="baidu" title="百度logo"> | baidu</p>
+<p>##<a name="emoji">添加表情<br>Github的Markdown语法支持添加emoji表情，输入不同的符号码（两个冒号包围的字符）可以显示出不同的表情。</a></p>
+<p>比如<code>:blush:</code>，可以显示:blush:。</p>
+<p>具体每一个表情的符号码，可以查询GitHub的官方网页<a href="http://www.emoji-cheat-sheet.com" target="_blank" rel="external">http://www.emoji-cheat-sheet.com</a>。</p>
+<p>但是这个网页每次都打开<strong>奇慢</strong>。。所以我整理到了本repo中，大家可以直接在此查看<a href="./emoji.md">emoji</a>。</p>
+</div></article><div class="pagination"><a href="/2013/04/30/my-fairy-tale1/" class="pagination-prev">PREV</a><span class="pagination-next">NEXT</span></div><div class="comments"></div></div><aside class="sidebar"><h3>分类标签</h3><ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/ARC/">ARC</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/App-Extensions/">App Extensions</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/AppGroups/">AppGroups</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/">C</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CocoaPods/">CocoaPods</a></li></ul><h3>最新文章</h3><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2016/10/24/一首小诗/">1024,一首小诗</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/06/29/终有一天/">终有一天.md</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/14/樱花樱花想见你/">樱花樱花想见你</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/06/工具本/">小tips汇总</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/02/CI搭建和脚本自动化/">CI搭建和脚本自动化</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/02/01/又要春节了啊/">又要春节了啊</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/01/26/写给PM的iOS消息推送/">写给PM的iOS消息推送</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/01/19/gitlab和sourcetree的使用/">gitlab和sourcetree的使用</a></li></ul></aside></section></div><div class="extra"></div><footer class="footer"><div class="row-flex-row limit-width vh-center"><div class="copyright"><P>© 2017 <a href="/">sopig</P></div><div class="power"><p><a href="http://pinggod.com/">Sean Sun</a>, 
+<a href="https://hexo.io">Hexo</a>, 
+<a href="https://github.com/">GitHub</a>, 
+<a href="https://jekyllrb.com/">Jekyll</a></p></div></div></footer><script>(function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;e=o.createElement(i);r=o.getElementsByTagName(i)[0];e.src='//www.google-analytics.com/analytics.js';r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));ga('create',"UA-80781234-1",'auto');ga('send','pageview');</script><script>var _hmt = _hmt || [];(function() {var hm = document.createElement("script");hm.src = "//hm.baidu.com/hm.js?ee75cf111111aa99f8540efa2570970";var s = document.getElementsByTagName("script")[0]; s.parentNode.insertBefore(hm, s);})();</script><script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script></body></html>

@@ -1,20 +1,41 @@
-extends partial/layout
-
-block site_title
-    != page.title + " · " + config.title
-
-block description
-    - var desc = page.desc || page.title + ' - ' + config.author;
-    meta(name="description", content=desc)
-
-block container
-    include mixins/post
-    +post(page)
-
-block pagination
-    include mixins/paginator
-    +post()
-    include partial/comment
-
-block copyright
-    include partial/copyright
+<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><title> Xcode单元测试-XCTest · xiao</title><meta name="description" content="A Blog Powered By Hexo"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="short icon" href="/favicon.png"><link rel="stylesheet" href="/css/jekyll.css"><!--[if lt IE 9]>
+<script src="js/html5shiv.min.js"></script>
+<script src="js/respond.min.js"></script>
+<![endif]--></head><body><header class="row-flex-row limit-width vh-center"><a href="/" class="logo"><img src="/favicon.png"></a><nav><ul class="nav-list"><li class="nav-list-item"><a href="/" class="nav-link">Home</a></li><li class="nav-list-item"><a href="/archives/" class="nav-link active">   Blog</a></li><li class="nav-list-item"><a href="https://github.com/xxxxxx" target="_blank" class="nav-link">github</a></li><li class="nav-list-item"><a href="https://coding.net/u/xxxxxx" target="_blank" class="nav-link">coding</a></li><li class="nav-list-item"><a href="http://weibo.com/xxxxxx" target="_blank" class="nav-link">weibo</a></li><li class="nav-list-item"><a href="/atom.xml" class="nav-link">rss</a></li></ul></nav></header><div class="container limit-width"><section class="row-flex-row"><div class="post"><article class="post-block"><h2 class="post-title"><a href="/2014/04/28/2014-04-28-iosdan-yuan-ce-shi-xctest/" class="post-title-link">Xcode单元测试-XCTest</a></h2><div class="post-meta"><ul class="post-tag-list"><li class="post-tag-item"><a href="/tags/Xcode/" class="post-tag-link">Xcode</a></li></ul><div class="post-time">Monday, April 28th 2014</div></div><div class="post-content"><p>第一次接触单元测试还是在SQA课程上，那时我用的是JUnit来对Java程序进行单元测试。如今XCode自带的单元测试工具已经从OCUnit演变到了XCTest，但其本质还是差不多的，其好处在于XCode集成，简单方便<br><a id="more"></a><br>在XCode5中新建一个工程的时候，会默认带一个用于单元测试的target，其名字为工程名加Test后缀，并且文件名也以Test结尾。你会发现已经有了一个默认的测试用例，其中有三个方法：<code>setUp</code>,<code>tearDown</code>,<code>testExample</code>。其中<code>testExample</code>方法左侧有一个播放按钮，点击它就会对这个方法进行测试，而在整个文件的<code>@implementation</code>那行也有个同样的按钮，点击后会对当前测试用例的所有方法进行测试，也可通过Command＋U快捷键来触发。这个测试用例类没有头文件，因为测试用例不需要给外部暴漏接口。按照苹果官方的文档，建立一个测试用例的过程应该是这样的：  </p>
+<ol>
+<li>建立一个<code>XCTestCase</code>的子类</li>
+<li>实现测试方法</li>
+<li>选择性的定义一些实例变量来存储fixture的状态</li>
+<li>通过重写<code>setUp</code>方法选择性的实例化fixture</li>
+<li>通过重写<code>tearDown</code>方法来在测试后清除<br>测试方法没有参数和返回值，用test作为前缀，比如：</li>
+</ol>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">- (<span class="keyword">void</span>) testSomething;</div></pre></td></tr></table></figure>
+<p>会自动被<code>XCTest</code>架构识别为测试用例，每个<code>XCTestCase</code>的子类中的<code>defaultTestSuite</code>都是一个<code>XCTestSuite</code>，它包含了这些测试用例。<br>测试方法的实现经常包含断言，必须通过验证才能通过测试，举个例子：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">@interface MathTest : XCTestCase &#123;</div><div class="line">@private</div><div class="line">   float f1;</div><div class="line">   float f2;</div><div class="line">&#125;</div><div class="line"></div><div class="line">- (void) testAddition;</div><div class="line"></div><div class="line">@end</div><div class="line"></div><div class="line">@implementation MathTest</div><div class="line"></div><div class="line">- (void) setUp</div><div class="line">&#123;</div><div class="line">   f1 = 2.0;</div><div class="line">   f2 = 3.0;</div><div class="line">&#125;</div><div class="line"></div><div class="line">- (void) testAddition</div><div class="line">&#123;</div><div class="line">   XCTAssertTrue (f1 + f2 == 5.0, @&quot;%f + %f should equal 5.0&quot;, f1, f2);</div><div class="line">&#125;</div><div class="line">@end</div></pre></td></tr></table></figure>
+<p>感觉这根JUnit很像的，下面列出所有的断言：<br>XCTFail(format…) 生成一个失败的测试；</p>
+<p>XCTAssertNil(a1, format…)为空判断，a1为空时通过，反之不通过；</p>
+<p>XCTAssertNotNil(a1, format…)不为空判断，a1不为空时通过，反之不通过；</p>
+<p>XCTAssert(expression, format…)当expression求值为TRUE时通过；</p>
+<p>XCTAssertTrue(expression, format…)当expression求值为TRUE时通过；</p>
+<p>XCTAssertFalse(expression, format…)当expression求值为False时通过；</p>
+<p>XCTAssertEqualObjects(a1, a2, format…)判断相等，[a1 isEqual:a2]值为TRUE时通过，其中一个不为空时，不通过；</p>
+<p>XCTAssertNotEqualObjects(a1, a2, format…)判断不等，[a1 isEqual:a2]值为False时通过，</p>
+<p>XCTAssertEqual(a1, a2, format…)判断相等（当a1和a2是 C语言标量、结构体或联合体时使用,实际测试发现NSString也可以）；</p>
+<p>XCTAssertNotEqual(a1, a2, format…)判断不等（当a1和a2是 C语言标量、结构体或联合体时使用）；</p>
+<p>XCTAssertEqualWithAccuracy(a1, a2, accuracy, format…)判断相等，（double或float类型）提供一个误差范围，当在误差范围（+/-accuracy）以内相等时通过测试；</p>
+<p>XCTAssertNotEqualWithAccuracy(a1, a2, accuracy, format…) 判断不等，（double或float类型）提供一个误差范围，当在误差范围以内不等时通过测试；</p>
+<p>XCTAssertThrows(expression, format…)异常测试，当expression发生异常时通过；反之不通过；（很变态）</p>
+<p>XCTAssertThrowsSpecific(expression, specificException, format…) 异常测试，当expression发生specificException异常时通过；反之发生其他异常或不发生异常均不通过；</p>
+<p>XCTAssertThrowsSpecificNamed(expression, specificException, exception_name, format…)异常测试，当expression发生具体异常、具体异常名称的异常时通过测试，反之不通过；</p>
+<p>XCTAssertNoThrow(expression, format…)异常测试，当expression没有发生异常时通过测试；</p>
+<p>XCTAssertNoThrowSpecific(expression, specificException, format…)异常测试，当expression没有发生具体异常、具体异常名称的异常时通过测试，反之不通过；</p>
+<p>XCTAssertNoThrowSpecificNamed(expression, specificException, exception_name, format…)异常测试，当expression没有发生具体异常、具体异常名称的异常时通过测试，反之不通过</p>
+<p>关于测试函数执行的顺序：以函数名中test后面的字符大小有关，比如-（void）test001XXX会先于-（void）test002XXX执行；</p>
+<p>这里只是Mark下单元测试的基本知识，具体应用的话这里推荐几篇不错的教程：  </p>
+<p><a href="http://objccn.io/issue-1-3/" target="_blank" rel="external">测试 View Controllers</a><br><a href="http://blog.csdn.net/jymn_chen/article/details/21552941" target="_blank" rel="external">Xcode 5 单元测试（一）使用XCTest进行单元测试</a><br><a href="http://blog.csdn.net/jymn_chen/article/details/21562869" target="_blank" rel="external">Xcode 5 单元测试（二）OCMock和GHUnit</a><br><a href="http://objccn.io/issue-15-2/" target="_blank" rel="external">XCTest 测试实战</a>  </p>
+<p>可能有的测试工具会用到CocoaPods来管理，给出一篇入门文章：  </p>
+<p><a href="http://blog.csdn.net/mysevenmi/article/details/17878421" target="_blank" rel="external">iOS中使用cocoaPods管理第三方类库</a></p>
+</div></article><div class="pagination"><a href="/2014/05/01/2014-05-01-chu-shi-core-data-1/" class="pagination-prev">PREV</a><a href="/2014/04/27/2014-04-27-zai-you-xi-de-skscenezhong-tian-jia-button/" class="pagination-next">NEXT</a></div><div class="comments"></div></div><aside class="sidebar"><h3>分类标签</h3><ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/ARC/">ARC</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/App-Extensions/">App Extensions</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/AppGroups/">AppGroups</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/">C</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CocoaPods/">CocoaPods</a></li></ul><h3>最新文章</h3><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2016/10/24/一首小诗/">1024,一首小诗</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/06/29/终有一天/">终有一天.md</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/14/樱花樱花想见你/">樱花樱花想见你</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/06/工具本/">小tips汇总</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/02/CI搭建和脚本自动化/">CI搭建和脚本自动化</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/02/01/又要春节了啊/">又要春节了啊</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/01/26/写给PM的iOS消息推送/">写给PM的iOS消息推送</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/01/19/gitlab和sourcetree的使用/">gitlab和sourcetree的使用</a></li></ul></aside></section></div><div class="extra"></div><footer class="footer"><div class="row-flex-row limit-width vh-center"><div class="copyright"><P>© 2017 <a href="/">sopig</P></div><div class="power"><p><a href="http://pinggod.com/">Sean Sun</a>, 
+<a href="https://hexo.io">Hexo</a>, 
+<a href="https://github.com/">GitHub</a>, 
+<a href="https://jekyllrb.com/">Jekyll</a></p></div></div></footer><script>(function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;e=o.createElement(i);r=o.getElementsByTagName(i)[0];e.src='//www.google-analytics.com/analytics.js';r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));ga('create',"UA-80781234-1",'auto');ga('send','pageview');</script><script>var _hmt = _hmt || [];(function() {var hm = document.createElement("script");hm.src = "//hm.baidu.com/hm.js?ee75cf111111aa99f8540efa2570970";var s = document.getElementsByTagName("script")[0]; s.parentNode.insertBefore(hm, s);})();</script><script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script></body></html>

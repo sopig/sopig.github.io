@@ -1,20 +1,73 @@
-extends partial/layout
-
-block site_title
-    != page.title + " · " + config.title
-
-block description
-    - var desc = page.desc || page.title + ' - ' + config.author;
-    meta(name="description", content=desc)
-
-block container
-    include mixins/post
-    +post(page)
-
-block pagination
-    include mixins/paginator
-    +post()
-    include partial/comment
-
-block copyright
-    include partial/copyright
+<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><title> iOS8自动调整UITableView和UICollectionView布局 · xiao</title><meta name="description" content="A Blog Powered By Hexo"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="short icon" href="/favicon.png"><link rel="stylesheet" href="/css/jekyll.css"><!--[if lt IE 9]>
+<script src="js/html5shiv.min.js"></script>
+<script src="js/respond.min.js"></script>
+<![endif]--></head><body><header class="row-flex-row limit-width vh-center"><a href="/" class="logo"><img src="/favicon.png"></a><nav><ul class="nav-list"><li class="nav-list-item"><a href="/" class="nav-link">Home</a></li><li class="nav-list-item"><a href="/archives/" class="nav-link active">   Blog</a></li><li class="nav-list-item"><a href="https://github.com/xxxxxx" target="_blank" class="nav-link">github</a></li><li class="nav-list-item"><a href="https://coding.net/u/xxxxxx" target="_blank" class="nav-link">coding</a></li><li class="nav-list-item"><a href="http://weibo.com/xxxxxx" target="_blank" class="nav-link">weibo</a></li><li class="nav-list-item"><a href="/atom.xml" class="nav-link">rss</a></li></ul></nav></header><div class="container limit-width"><section class="row-flex-row"><div class="post"><article class="post-block"><h2 class="post-title"><a href="/2014/08/17/2014-08-17-New-in-Table-and-Collection-Views/" class="post-title-link">iOS8自动调整UITableView和UICollectionView布局</a></h2><div class="post-meta"><ul class="post-tag-list"><li class="post-tag-item"><a href="/tags/iOS/" class="post-tag-link">iOS</a></li></ul><div class="post-time">Sunday, August 17th 2014</div></div><div class="post-content"><p>本文讲述了<code>UITableView</code>、<code>UICollectionView</code>实现self-sizing cell布局的知识，以及如何用InvalidationContext优化<code>UICollectionView</code>布局的更新。  </p>
+<a id="more"></a>
+<p>##背景</p>
+<p>iOS越来越人性化了，用户可以在设置-通用-辅助功能中动态调整字体大小了。你会发现所有iOS自带的APP的字体大小都变了，可惜我们开发的第三方APP依然是以前的字体。在iOS7之后我们可以用<code>UIFont</code>的<code>preferredFontForTextStyle:</code>类方法来指定一个样式，并让字体大小符合用户设定的字体大小。目前可供选择的有六种样式:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">UIFontTextStyleHeadline</div><div class="line">UIFontTextStyleBody</div><div class="line">UIFontTextStyleSubheadline</div><div class="line">UIFontTextStyleFootnote</div><div class="line">UIFontTextStyleCaption1</div><div class="line">UIFontTextStyleCaption2</div></pre></td></tr></table></figure>
+<p>iOS会根据样式的用途来合理调整字体。  </p>
+<p>问题来了，诸如字体大小这种“动态类型”，我们需要对其进行动态的UI调整，否则总是觉得我们的界面怪怪的：  </p>
+<p><img src="/images/blog/image-DCBF_53F0DDDB.jpg" alt="">  </p>
+<p>我们想要让Cell的高度随着字体大小而作出调整：  </p>
+<p><img src="/images/blog/image-0D8C_53F0DDDB.jpg" alt="">  </p>
+<p>总之，还会有其他动态因素导致我们需要修改布局。  </p>
+<p>##解决方案</p>
+<p>###UITableView</p>
+<p>有三种策略可以调节Cell（或者是Header和Footer）的高度：  </p>
+<ul>
+<li>调节Height属性</li>
+<li>通过委托方法<code>tableView: heightForRowAtIndexPath:</code></li>
+<li>Cell的“自排列”（self-sizing）</li>
+</ul>
+<p>前两种策略都是我们所熟悉的，后面将介绍第三种策略。<code>UITableViewCell</code>和<code>UICollectionViewCell</code>都支持self-sizing  </p>
+<p>在iOS7中，<code>UITableViewDelegate</code>新增了三个方法来满足用户设定Cell、Header和Footer预计高度的方法:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">- tableView:estimatedHeightForRowAtIndexPath:</div><div class="line">- tableView:estimatedHeightForHeaderInSection:</div><div class="line">- tableView:estimatedHeightForFooterInSection:</div></pre></td></tr></table></figure>
+<p>当然对应这三个方法<code>UITableView</code>也<code>estimatedRowHeight</code>、<code>estimatedSectionHeaderHeight</code>和<code>estimatedSectionFooterHeight</code>三个属性，局限性在于只能统一定义所有行和节的高度。    </p>
+<p>以Cell为例，iOS会根据给出的预计高度来创建一个Cell，但等到真正要显示它的时候，iOS8会在self-sizing计算得出新的Size并调整table的<code>contentSize</code>后，将Cell绘制显示出来。关键在于如何得出Cell新的Size，iOS提供了两种方法：  </p>
+<ul>
+<li>自动布局<br>  这个两年前推出的神器虽然在一开始表现不佳，但随着Xcode的越来越给力，在iOS7中自动布局俨然成了默认勾选的选项，通过设定一系列约束来使得我们的UI能够适应各种尺寸的屏幕。如果你有使用约束的经验，想必已经有了解决思路：向Cell的<code>contentView</code>添加约束。iOS会先调用<code>UIView</code>的<code>systemLayoutSizeFittingSize:</code>方法来根据约束计算新的Size，如果你没实现约束，<code>systemLayoutSizeFittingSize:</code>会接着调用<code>sizeThatFits:</code>方法。  </li>
+<li>人工代码<br>  我们可以重写<code>sizeThatFits:</code>方法来自己定义新的Size，这样我们就不必学习约束相关的知识了。  </li>
+</ul>
+<p>下面我给出了一个用Swift语言写的Demo-<a href="http://hardchoice.yulingtianxia.com" target="_blank" rel="external">HardChoice</a>，使用自动布局来调整<code>UITableViewCell</code>的高度。我通过实现一个<code>UITableViewCell</code>的子类<code>DynamicCell</code>来实现自动布局，你可以再GitHub上下载<a href="https://github.com/yulingtianxia/HardChoice" target="_blank" rel="external">源码</a>：  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div></pre></td><td class="code"><pre><div class="line">import UIKit</div><div class="line"></div><div class="line">class DynamicCell: UITableViewCell &#123;</div><div class="line"></div><div class="line">    required init(coder: NSCoder) &#123;</div><div class="line">        super.init(coder: coder)</div><div class="line">        if textLabel != nil &#123;</div><div class="line">            textLabel.font = UIFont.preferredFontForTextStyle(UIFontTextStyleHeadline)</div><div class="line">            textLabel.numberOfLines = 0</div><div class="line">        &#125;</div><div class="line">        if detailTextLabel != nil &#123;</div><div class="line">            detailTextLabel.font = UIFont.preferredFontForTextStyle(UIFontTextStyleBody)</div><div class="line">            detailTextLabel.numberOfLines = 0</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    override func constraints() -&gt; [AnyObject] &#123;</div><div class="line">        var constraints = [AnyObject]()</div><div class="line">        if textLabel != nil &#123;</div><div class="line">            constraints.extend(constraintsForView(textLabel))</div><div class="line">        &#125;</div><div class="line">        if detailTextLabel != nil &#123;</div><div class="line">            constraints.extend(constraintsForView(detailTextLabel))</div><div class="line">        &#125;</div><div class="line">        constraints.append(NSLayoutConstraint(item: contentView, attribute: NSLayoutAttribute.Height, relatedBy: NSLayoutRelation.GreaterThanOrEqual, toItem: contentView, attribute: NSLayoutAttribute.Height, multiplier: 0, constant: 44))</div><div class="line">        contentView.addConstraints(constraints)</div><div class="line">        return constraints</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    func constraintsForView(view:UIView) -&gt; [AnyObject]&#123;</div><div class="line">        var constraints = [NSLayoutConstraint]()</div><div class="line">        constraints.append(NSLayoutConstraint(item: view, attribute: NSLayoutAttribute.FirstBaseline, relatedBy: NSLayoutRelation.Equal, toItem: contentView, attribute: NSLayoutAttribute.Top, multiplier: 1.8, constant: 30.0))</div><div class="line">        constraints.append(NSLayoutConstraint(item: contentView, attribute: NSLayoutAttribute.Bottom, relatedBy: NSLayoutRelation.GreaterThanOrEqual, toItem: view, attribute: NSLayoutAttribute.Baseline, multiplier: 1.3, constant: 8))</div><div class="line">        return constraints</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>上面的代码需要注意的是，Objective-C中的类在Swift中都可以被当做<code>AnyObject</code>，这在类型兼容问题上很管用。  </p>
+<p>别忘了在相应的UITableViewController中的viewDidLoad方法中加上：  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">self.tableView.estimatedRowHeight = 44</div></pre></td></tr></table></figure>
+<p>自适应效果如下：  </p>
+<p><img src="/images/blog/140833033058.gif" alt="">  </p>
+<p>###UICollectionView</p>
+<p><code>UITableView</code> 和 <code>UICollectionView</code> 都是 data-source 和 delegate 驱动的。<code>UICollectionView</code>在此之上进行了进一步抽象。它将其子视图的位置，大小和外观的控制权委托给一个单独的布局对象。通过提供一个自定义布局对象，你几乎可以实现任何你能想象到的布局。布局继承自 <code>UICollectionViewLayout</code> 抽象基类。iOS6 中以 <code>UICollectionViewFlowLayout</code> 类的形式提出了一个具体的布局实现。在<code>UICollectionViewFlowLayout</code>中，self-sizing同样适用：  </p>
+<p><img src="/images/blog/image-05D4_53F0E00F.jpg" alt="">  </p>
+<p>采用self-sizing后：  </p>
+<p><img src="/images/blog/image-B1E8_53F0DDDB.jpg" alt="">    </p>
+<p>Demo下载地址：<a href="https://github.com/yulingtianxia/Self-Sizing-CollectionView-Demo" target="_blank" rel="external">https://github.com/yulingtianxia/Self-Sizing-CollectionView-Demo</a>  </p>
+<p><code>UICollectionView</code>实现self-sizing不仅可以通过在Cell的<code>contentView</code>上加约束和重写<code>sizeThatFits:</code>方法，也能在Cell层面（以前都是在<code>contentSize</code>上进行self-sizing）上做文章：重写<code>UICollectionReusableView</code>的<code>preferredLayoutAttributesFittingAttributes:</code>方法来在self-sizing计算出Size之后再修改，这样就达到了对Cell布局属性（<code>UICollectionViewLayoutAttributes</code>）的全面控制。  </p>
+<p>PS：<code>preferredLayoutAttributesFittingAttributes:</code>方法默认调整Size属性来适应self-sizing Cell，所以重写的时候需要先调用父类方法，再在返回的<code>UICollectionViewLayoutAttributes</code>对象上做你想要做的修改。  </p>
+<p>由此我们从最经典的<code>UICollectionViewLayout</code>强制计算属性（还记得<code>UICollectionViewLayoutAttributes</code>的一系列工厂方法么？）到使用self-sizing来根据我们需求调整属性中的Size，再到重写<code>UICollectionReusableView</code>（<code>UICollectionViewCell</code>也是继承于它）的<code>preferredLayoutAttributesFittingAttributes:</code>方法来从Cell层面对所有属性进行修改：  </p>
+<p>下面来说说如何在<code>UICollectionViewFlowLayout</code>实现self-sizing：  </p>
+<p>首先，<code>UICollectionViewFlowLayout</code>增加了<code>estimatedItemSize</code>属性，这与<code>UITableView</code>中的”<code>estimated...Height</code>“很像（注意我用省略号囊括那三种属性），但毕竟<code>UICollectionView</code>中的Item都需要约束Height和Width的，所以它是个<code>CGSIze</code>，除了这点它与<code>UITableView</code>中的”<code>estimated...Height</code>“用法没区别。  </p>
+<p>其次。。。没有其次，在<code>UICollectionView</code>中实现self-sizing，只需给<code>estimatedItemSize</code>属性赋值（不能是<code>CGSizeZero</code>），一行代码足矣。  </p>
+<p>###InvalidationContext</p>
+<p>假如设备屏幕旋转，或者需要展示一些其妙的效果（比如CoverFlow），我们需要将当前的布局失效，并重新计算布局。当然每次计算都有一定的开销，所以我们应该谨慎的仅在我们需要的时候调用<code>invalidateLayout</code>方法来让布局失效。  </p>
+<p>在iOS6时代，有的人会“聪明地”这样做：  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">- (BOOL)shouldInvalidateLayoutForBoundsChange:(CGRect)newBounds</div><div class="line">&#123;</div><div class="line">    CGRect oldBounds = self.collectionView.bounds;</div><div class="line">    if (CGRectGetWidth(newBounds) != CGRectGetWidth(oldBounds)) &#123;</div><div class="line">        return YES;</div><div class="line">    &#125;</div><div class="line">        return NO;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>而iOS7新加入的<code>UICollectionViewLayoutInvalidationContext</code>类声明了在布局失效时布局的哪些部分需要被更新。当数据源变更时，<code>invalidateEverything</code>和<code>invalidateDataSourceCounts</code>这两个只读Bool属性标记了<code>UICollectionView</code>数据源“全部过期失效”和“Section和Item数量失效”，<code>UICollectionView</code>会将它们自动设定并提供给你。  </p>
+<p>你可以调用<code>invalidateLayoutWithContext:</code>方法并传入一个<code>UICollectionViewLayoutInvalidationContext</code>对象，这能优化布局的更新效率。</p>
+<p>当你自定义一个<code>UICollectionViewLayout</code>子类时，你可以调用<code>invalidationContextClass</code>方法来返回一个你定义的<code>UICollectionViewLayoutInvalidationContext</code>的子类，这样你的Layout子类在失效时会使用你自定义的InvalidationContext子类来优化更新布局。  </p>
+<p>你还可以重写<code>invalidationContextForBoundsChange:</code>方法，在实现自定义Layout时通过重写这个方法返回一个InvalidationContext对象。  </p>
+<p>综上所述都是iOS7中新加入的内容，并且还可以应用在<code>UICollectionViewFlowLayout</code>中。在iOS8中，<code>UICollectionViewLayoutInvalidationContext</code>也被用在self-sizing cell上。  </p>
+<p>iOS8中<code>UICollectionViewLayoutInvalidationContext</code>新加入了三个方法使得我们可以更加细致精密地使某一行某一节Item（Cell）、Supplementary View或Decoration View失效：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">invalidateItemsAtIndexPaths:</div><div class="line">invalidateSupplementaryElementsOfKind:atIndexPaths:</div><div class="line">invalidateDecorationElementsOfKind:atIndexPaths:</div></pre></td></tr></table></figure>
+<p>对应着添加了三个只读数组属性来标记上面那三种组件：  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">invalidatedItemIndexPaths</div><div class="line">invalidatedSupplementaryIndexPaths</div><div class="line">invalidatedDecorationIndexPaths</div></pre></td></tr></table></figure>
+<p>iOS自带的照片应用会将每一节照片的信息（时间、地点）停留显示在最顶部，实现这种将Header粘在顶端的功能其实就是将那个Index的Supplementary View失效，就这么简单。    </p>
+<p><code>UICollectionViewLayoutInvalidationContext</code>新加入的<code>contentOffsetAdjustment</code>和<code>contentSizeAdjustment</code>属性可以让我们更新CollectionView的content的位移和尺寸。  </p>
+<p>此外<code>UICollectionViewLayout</code>还加入了一对儿方法来帮助我们使用self-sizing：  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">shouldInvalidateLayoutForPreferredLayoutAttributes:withOriginalAttributes:</div><div class="line">invalidationContextForPreferredLayoutAttributes:withOriginalAttributes:</div></pre></td></tr></table></figure>
+<p>当一个self-sizing Cell发生属性发生变化时，第一个方法会被调用，它询问是否应该更新布局（即原布局失效），默认为NO；而第二个方法更细化的指明了哪些属性应该更新，需要调用父类的方法获得一个InvalidationContext对象，然后对其做一些你想要的修改，最后返回。</p>
+<p>试想，如果在你自定义的布局中，一个Cell的Size因为某种原因发生了变化（比如由于字体大小变化），其他的Cell会由于self-sizing而位置发生变化，你需要实现上面两个方法来让指定的Cell更新布局中的部分属性；别忘了整个CollectionView的<code>contentSize</code>和<code>contentOffset</code>因此也会发生变化，你需要给<code>contentOffsetAdjustment</code>和<code>contentSizeAdjustment</code>属性赋值。  </p>
+</div></article><div class="pagination"><a href="/2014/08/20/three-drama/" class="pagination-prev">PREV</a><a href="/2014/08/14/reduce-http-requests/" class="pagination-next">NEXT</a></div><div class="comments"></div></div><aside class="sidebar"><h3>分类标签</h3><ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/ARC/">ARC</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/App-Extensions/">App Extensions</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/AppGroups/">AppGroups</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/">C</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CocoaPods/">CocoaPods</a></li></ul><h3>最新文章</h3><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2016/10/24/一首小诗/">1024,一首小诗</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/06/29/终有一天/">终有一天.md</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/14/樱花樱花想见你/">樱花樱花想见你</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/06/工具本/">小tips汇总</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/02/CI搭建和脚本自动化/">CI搭建和脚本自动化</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/02/01/又要春节了啊/">又要春节了啊</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/01/26/写给PM的iOS消息推送/">写给PM的iOS消息推送</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/01/19/gitlab和sourcetree的使用/">gitlab和sourcetree的使用</a></li></ul></aside></section></div><div class="extra"></div><footer class="footer"><div class="row-flex-row limit-width vh-center"><div class="copyright"><P>© 2017 <a href="/">sopig</P></div><div class="power"><p><a href="http://pinggod.com/">Sean Sun</a>, 
+<a href="https://hexo.io">Hexo</a>, 
+<a href="https://github.com/">GitHub</a>, 
+<a href="https://jekyllrb.com/">Jekyll</a></p></div></div></footer><script>(function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;e=o.createElement(i);r=o.getElementsByTagName(i)[0];e.src='//www.google-analytics.com/analytics.js';r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));ga('create',"UA-80781234-1",'auto');ga('send','pageview');</script><script>var _hmt = _hmt || [];(function() {var hm = document.createElement("script");hm.src = "//hm.baidu.com/hm.js?ee75cf111111aa99f8540efa2570970";var s = document.getElementsByTagName("script")[0]; s.parentNode.insertBefore(hm, s);})();</script><script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script></body></html>

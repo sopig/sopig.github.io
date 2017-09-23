@@ -1,20 +1,35 @@
-extends partial/layout
-
-block site_title
-    != page.title + " · " + config.title
-
-block description
-    - var desc = page.desc || page.title + ' - ' + config.author;
-    meta(name="description", content=desc)
-
-block container
-    include mixins/post
-    +post(page)
-
-block pagination
-    include mixins/paginator
-    +post()
-    include partial/comment
-
-block copyright
-    include partial/copyright
+<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><title> iOS程序员必备网站 · xiao</title><meta name="description" content="A Blog Powered By Hexo"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="short icon" href="/favicon.png"><link rel="stylesheet" href="/css/jekyll.css"><!--[if lt IE 9]>
+<script src="js/html5shiv.min.js"></script>
+<script src="js/respond.min.js"></script>
+<![endif]--></head><body><header class="row-flex-row limit-width vh-center"><a href="/" class="logo"><img src="/favicon.png"></a><nav><ul class="nav-list"><li class="nav-list-item"><a href="/" class="nav-link">Home</a></li><li class="nav-list-item"><a href="/archives/" class="nav-link active">   Blog</a></li><li class="nav-list-item"><a href="https://github.com/xxxxxx" target="_blank" class="nav-link">github</a></li><li class="nav-list-item"><a href="https://coding.net/u/xxxxxx" target="_blank" class="nav-link">coding</a></li><li class="nav-list-item"><a href="http://weibo.com/xxxxxx" target="_blank" class="nav-link">weibo</a></li><li class="nav-list-item"><a href="/atom.xml" class="nav-link">rss</a></li></ul></nav></header><div class="container limit-width"><section class="row-flex-row"><div class="post"><article class="post-block"><h2 class="post-title"><a href="/2014/04/07/2014-04-07-ioscheng-xu-yuan-bi-bei-wang-zhan/" class="post-title-link">iOS程序员必备网站</a></h2><div class="post-meta"><ul class="post-tag-list"><li class="post-tag-item"><a href="/tags/iOS/" class="post-tag-link">iOS</a></li></ul><div class="post-time">Monday, April 7th 2014</div></div><div class="post-content"><p>##前言</p>
+<p>记得最早接触iOS开发是在大二，那时国内相关资源还很少，比较适合新手入门的文章和视频也很少，感觉斯坦福大学的iPhone开发公开课算是最喜欢的了，还有<a href="http://blog.csdn.net/nicktang" target="_blank" rel="external">NickTang</a>和<a href="http://www.cnblogs.com/dotey/" target="_blank" rel="external">宝玉</a>的博客也给了我很多启发。那时正逢Objective－C刚刚推出了ARC，正处于是否用ARC的讨论中，这让我更加迷茫。<br>英文菜成渣的我开始看Apple官方的文档，download官方的demo，光是一个OC内存管理就看了好久；而如今国内中文的开发资源可以说比那时多很多了，所以想总结一下，方便大家。（PS：其实发现写博客最大的好处就是免得以后再用到某些东西的时候重复的查找，以前一直觉得应该把经验记录下来，但是一直懒得写，这次终于动手了^_^）<br><a id="more"></a></p>
+<p>##正题</p>
+<p>###比较适合入门的 </p>
+<ul>
+<li><a href="http://www.cocoachina.com/" target="_blank" rel="external">CocoaChina</a>创立于2008年3月，是一个苹果产品和 iOS 开发的中文社区网站，主要为苹果产品开发者提供资讯、信息及服务。  </li>
+<li>Apple的官方文档，尤其是关于人机界面设计的和OC的，网址不固定，XCode中可以查看。（这里还建议使用Dash管理API文档）  </li>
+</ul>
+<p>###学习进阶参考</p>
+<ul>
+<li><a href="http://beyondvincent.com" target="_blank" rel="external">破船之家</a> 翻译和汇总了很多来自<a href="http://www.raywenderlich.com" target="_blank" rel="external">Ray</a>的教程，很经典实用，也有大量原创文章  </li>
+<li><a href="http://www.ityran.com" target="_blank" rel="external">泰然网</a> 感觉做游戏比较多  </li>
+<li><a href="http://code4app.com/" target="_blank" rel="external">Code4App</a> 偶然发现这个网站，集合了大量实例代码，超赞</li>
+<li><a href="http://blog.devtang.com/" target="_blank" rel="external">唐巧的博客</a> 大神人物，总怀疑当初启蒙我的Nick Tang就是他</li>
+<li><a href="http://onevcat.com" target="_blank" rel="external">王巍的博客</a> 精力充沛的大神，工作之余还上架了一些App，他的博客令我大开眼界</li>
+<li><a href="http://www.cocos2d-x.org" target="_blank" rel="external">cocos2d-x</a> 跨平台游戏制作神器，虽然我已经用上了Sprite Kit，但是这种重量级的游戏引擎还是必须mark下  </li>
+<li><a href="http://objccn.io" target="_blank" rel="external">objccn</a> objc中文翻译，比较经典</li>
+</ul>
+<p>###工具类网站</p>
+<ul>
+<li><a href="https://github.com/" target="_blank" rel="external">Github</a> 代码托管版本控制，不解释</li>
+<li><a href="http://stackoverflow.com/" target="_blank" rel="external">Stackoverflow</a> 最令我佩服的就是80%的疑难杂症最后都在这里找到解决方案，这里有好多耐心的老外！</li>
+</ul>
+<p>###优质博客集合</p>
+<ul>
+<li><a href="https://github.com/tangqiaoboy/iOSBlogCN" target="_blank" rel="external">iOSBlogCN</a>  </li>
+</ul>
+<p>其实还有很多优秀的网站没有收录，本文只是收录了本人能看懂的网址（英文伤不起），其实大量优秀的教程都是英文的啊！碰到问题现用现查还是最快，没事儿的时候可以看看本文提到的网站充充电。</p>
+</div></article><div class="pagination"><a href="/2014/04/07/2014-04-07-iosdan-li-mo-shi-ornsuserdefaults/" class="pagination-prev">PREV</a><a href="/2014/04/05/2014-04-05-macosx10-dot-9shang-yong-octopresshe-githubda-jian-ge-ren-bo-ke/" class="pagination-next">NEXT</a></div><div class="comments"></div></div><aside class="sidebar"><h3>分类标签</h3><ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/ARC/">ARC</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/App-Extensions/">App Extensions</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/AppGroups/">AppGroups</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/">C</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CocoaPods/">CocoaPods</a></li></ul><h3>最新文章</h3><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2016/10/24/一首小诗/">1024,一首小诗</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/06/29/终有一天/">终有一天.md</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/14/樱花樱花想见你/">樱花樱花想见你</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/06/工具本/">小tips汇总</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/02/CI搭建和脚本自动化/">CI搭建和脚本自动化</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/02/01/又要春节了啊/">又要春节了啊</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/01/26/写给PM的iOS消息推送/">写给PM的iOS消息推送</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/01/19/gitlab和sourcetree的使用/">gitlab和sourcetree的使用</a></li></ul></aside></section></div><div class="extra"></div><footer class="footer"><div class="row-flex-row limit-width vh-center"><div class="copyright"><P>© 2017 <a href="/">sopig</P></div><div class="power"><p><a href="http://pinggod.com/">Sean Sun</a>, 
+<a href="https://hexo.io">Hexo</a>, 
+<a href="https://github.com/">GitHub</a>, 
+<a href="https://jekyllrb.com/">Jekyll</a></p></div></div></footer><script>(function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;e=o.createElement(i);r=o.getElementsByTagName(i)[0];e.src='//www.google-analytics.com/analytics.js';r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));ga('create',"UA-80781234-1",'auto');ga('send','pageview');</script><script>var _hmt = _hmt || [];(function() {var hm = document.createElement("script");hm.src = "//hm.baidu.com/hm.js?ee75cf111111aa99f8540efa2570970";var s = document.getElementsByTagName("script")[0]; s.parentNode.insertBefore(hm, s);})();</script><script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script></body></html>
