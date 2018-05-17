@@ -8,11 +8,12 @@ menu: 关于
 permalink: /about/
 ---
 
-我是马壮，码而生，码而立。
+Hi，我是sopig，89年生于湖北仙桃，毕业于北京联合大学，程序员，喜欢做东西。
 
-仰慕「优雅编码的艺术」。
+经常上新浪微博，有时用Instagram拍照，会去豆瓣找书和电影，偶尔上twitter。
 
-坚信熟能生巧，努力改变人生。
+
+欢迎Email交流： chay0103@gmail.com chay0103@gmail.com 或者在这里留言。
 
 ## 联系
 
