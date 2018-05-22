@@ -1,8 +1,8 @@
 # ---------------- #
 #   Main Configs   #
 # ---------------- #
-baseurl:
-url: http://sopig.cn
+baseurl: http://blog.sopig.cn
+url: http://blog.sopig.cn
 date_format: "ordinal"
 title: sopig's blog
 subtitle: "像少年啦飞驰"
