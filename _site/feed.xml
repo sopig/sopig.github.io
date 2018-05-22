@@ -1,194 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.7.3">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2018-05-17T11:16:23+08:00</updated><id>http://localhost:4000/</id><title type="html">码志</title><subtitle>马壮的个人博客</subtitle><author><name>Zhuang Ma</name></author><entry><title type="html">光谷社区第三方 Android 客户端 v2.0 发布</title><link href="http://localhost:4000/2018/04/30/guanggoo-android-app-new-version/" rel="alternate" type="text/html" title="光谷社区第三方 Android 客户端 v2.0 发布" /><published>2018-04-30T00:00:00+08:00</published><updated>2018-04-30T00:00:00+08:00</updated><id>http://localhost:4000/2018/04/30/guanggoo-android-app-new-version</id><content type="html" xml:base="http://localhost:4000/2018/04/30/guanggoo-android-app-new-version/">&lt;p&gt;我最完整的业余作品 &lt;a href=&quot;https://github.com/mzlogin/guanggoo-android&quot;&gt;光谷社区第三方 Android 客户端&lt;/a&gt; （虽然也还不是很完善）今天发布了重大更新，版本号由 v1.3 更新到 v2.0，欢迎所有身在武汉和心系武汉的朋友们试用体验，也欢迎各路开发者大神们对照源码（后文有链接）交流指点。&lt;/p&gt;
-
-&lt;p&gt;本次更新主要是界面和交互风格的全面改版，以及少量的功能更新，将这描述为「重大更新」并非夸张，主要是开发模式相比之前有所变化。&lt;/p&gt;
-
-&lt;p&gt;以前基本是自己一个人在战斗，功能自己想着往上加，界面和交互自己想着做，程序员自己设计的东西，大家都懂的——能用但是不好用。&lt;/p&gt;
-
-&lt;p&gt;现在就好多了，社区里热心的 UI 设计师小哥 colinlee 为应用设计了界面，我们经过讨论之后确定交互体验，开发完之后再一起视觉走查、完善，妈妈再也不用担心应用界面土得掉渣了，同时也更让我觉得光谷社区是一个有温度有活力的社区，可以找到志趣相投的小伙伴们一起做点有意义的事情。&lt;/p&gt;
-
-&lt;p&gt;好了言归正传，先来看一下新版界面：&lt;/p&gt;
-
-&lt;p&gt;&lt;em&gt;首页&lt;/em&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://mazhuang.org/guanggoo-android/screenshots/topic-list.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;em&gt;帖子详情&lt;/em&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://mazhuang.org/guanggoo-android/screenshots/topic-detail.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;em&gt;节点列表&lt;/em&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://mazhuang.org/guanggoo-android/screenshots/nodes-list.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;em&gt;抽屉&lt;/em&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://mazhuang.org/guanggoo-android/screenshots/drawer.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;挺赞的吧~然后是少得可怜的功能更新：&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;
-    &lt;p&gt;新增关注/取消关注用户的功能；&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;对评论点赞的功能。&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;其实好多东西都隐含在界面和交互的更新里了，需要慢慢体会……:laughing:&lt;/p&gt;
-
-&lt;p&gt;最后奉上下载二维码：&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://mazhuang.org/guanggoo-android/qrcode.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;在微信里识别二维码后需要点击右上角从浏览器打开链接，然后下载 APK 安装。&lt;/p&gt;
-
-&lt;p&gt;下载链接：&lt;a href=&quot;https://www.coolapk.com/apk/164523&quot;&gt;https://www.coolapk.com/apk/164523&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;源码地址：&lt;a href=&quot;https://github.com/mzlogin/guanggoo-android&quot;&gt;https://github.com/mzlogin/guanggoo-android&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;预计在不久的将来还会再更新几个版本，将一些未经设计的界面进行新界面补全，将消息提醒、今日热议、发贴回贴时上传图片、屏蔽用户等功能逐渐加上去。大家有什么好建议，或者 bug 反馈，可以通过「关于我们」界面里的发邮件吐槽功能让我知道，或者去光谷社区发贴艾特我也行。也欢迎更多开发者朋友一起加入合作，磨炼磨炼技术也好，结识更多朋友也罢，也许人生的新篇章就在不经意间打开了。&lt;/p&gt;</content><author><name>Zhuang Ma</name></author><summary type="html">我最完整的业余作品 光谷社区第三方 Android 客户端 （虽然也还不是很完善）今天发布了重大更新，版本号由 v1.3 更新到 v2.0，欢迎所有身在武汉和心系武汉的朋友们试用体验，也欢迎各路开发者大神们对照源码（后文有链接）交流指点。</summary></entry><entry><title type="html">解决两个 Android 模拟器之间无法网络通信的问题</title><link href="http://localhost:4000/2017/12/03/tcp-connect-between-android-emulators/" rel="alternate" type="text/html" title="解决两个 Android 模拟器之间无法网络通信的问题" /><published>2017-12-03T00:00:00+08:00</published><updated>2017-12-03T00:00:00+08:00</updated><id>http://localhost:4000/2017/12/03/tcp-connect-between-android-emulators</id><content type="html" xml:base="http://localhost:4000/2017/12/03/tcp-connect-between-android-emulators/">&lt;p&gt;本文解决的是一个小众场景的问题：&lt;/p&gt;
-
-&lt;p&gt;出差在外，需要调试局域网内的两台 Android 设备之间通过 TCP 通信的情况，可手边又不是随时有多台可用的设备，于是想在笔记本上同时跑两台 Android 模拟器来构造调试环境，但是发现它俩的 IP 地址竟然都是 10.0.2.15，场面一度十分尴尬……&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/images/posts/android/ip-address.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;谷狗之后，众多相关的博客和问答贴将我引向了官方文档页面：&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://developer.android.com/studio/run/emulator-networking.html#connecting&quot;&gt;Interconnecting emulator instances&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;原来官方指南上解释过相关的知识，现将我关心和以前迷惑的部分翻译摘录如下，如果希望对此有个更全面的了解，还是推荐完整阅读 Android 官方文档里有关 Emulator 的章节 &lt;a href=&quot;https://developer.android.com/studio/run/emulator.html&quot;&gt;https://developer.android.com/studio/run/emulator.html&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;首先讲一点预备知识，再说解决方案。&lt;/p&gt;
-
-&lt;h2 id=&quot;模拟器的网络地址空间&quot;&gt;模拟器的网络地址空间&lt;/h2&gt;
-
-&lt;p&gt;每个模拟器都运行在一个虚拟路由/防火墙服务后面，这个服务将模拟器和宿主机器的网络接口、配置以及 Internet 隔离开来。对模拟器而言，宿主机器和其它模拟器对它是不可见的，它只知道自己是通过以太网连接到路由/防火墙。&lt;/p&gt;
-
-&lt;p&gt;每个模拟器的虚拟路由管理 10.0.2/24 的网络地址空间，所有地址都是 10.0.2.xx 格式。地址预分配的情况如下：&lt;/p&gt;
-
-&lt;table&gt;
-  &lt;thead&gt;
-    &lt;tr&gt;
-      &lt;th&gt;网络地址&lt;/th&gt;
-      &lt;th&gt;描述&lt;/th&gt;
-    &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td&gt;10.0.2.1&lt;/td&gt;
-      &lt;td&gt;路由/网络地址&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;10.0.2.2&lt;/td&gt;
-      &lt;td&gt;宿主机器的 loopback interface，相当于电脑上的 127.0.0.1&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;10.0.2.3&lt;/td&gt;
-      &lt;td&gt;首选 DNS Server&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;10.0.2.4 &lt;br /&gt; 10.0.2.5 &lt;br /&gt; 10.0.2.6&lt;/td&gt;
-      &lt;td&gt;可选的第二、第三、第四 DNS Server&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;10.0.2.15&lt;/td&gt;
-      &lt;td&gt;模拟器的网络地址&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;127.0.0.1&lt;/td&gt;
-      &lt;td&gt;模拟器的 loopback interface&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;p&gt;需要注意的是所有模拟器的网络地址分配都是一样的，这样一来，如果有两个模拟器同时运行在一台电脑上，它们都会有各自的路由，并且给两个模拟器分配的 IP 都是 10.0.2.15。它们被路由隔离，相互不可见。&lt;/p&gt;
-
-&lt;p&gt;另外一点就是模拟器上的 127.0.0.1 是指它自己，所以如果想访问宿主机器上运行的服务，要使用 10.0.2.2。&lt;/p&gt;
-
-&lt;h2 id=&quot;实现两台模拟器之间的通信&quot;&gt;实现两台模拟器之间的通信&lt;/h2&gt;
-
-&lt;p&gt;现在来解决标题和文首提到的问题，主要用到了网络重定向。&lt;/p&gt;
-
-&lt;p&gt;假设开发环境是：&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;PC 是指运行模拟器的宿主电脑&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;emulator-5554 是模拟器 1，将在 TCP 通信中作为 server 端&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;emulator-5556 是模拟器 2，将在 TCP 通信中作为 client 端&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;配置步骤：&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;
-    &lt;p&gt;在 emulator-5554 上运行 server，侦听 10.0.2.15:58080&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;在 PC 上运行 &lt;code class=&quot;highlighter-rouge&quot;&gt;cat ~/.emulator_console_auth_token&lt;/code&gt;，得到一个 token&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;在 PC 上运行&lt;/p&gt;
-
-    &lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; telnet localhost 5554
- auth &amp;lt;token&amp;gt;
- redir add tcp:51212:58080
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
-
-    &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;token&amp;gt;&lt;/code&gt; 是指第 2 步中得到的 token。&lt;/p&gt;
-
-    &lt;p&gt;51212 是 PC 端口，58080 是 5554 模拟器的端口。&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;在 emulator-5556 上运行 client 程序，连接 10.0.2.2:51212&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;至此，两台模拟器之间已经可以通过 TCP 愉快地通信了。&lt;/p&gt;
-
-&lt;p&gt;它们之间的网络连接和通信示意图如下：&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/images/posts/android/emulators-communication.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;注：&lt;/strong&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;以上步骤中用到的端口号都是可以根据你的需求替换的&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Windows 下 telnet 命令默认没有启用，具体启用方法请搜狗一下&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;模拟器的网络限制&quot;&gt;模拟器的网络限制&lt;/h2&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;
-    &lt;p&gt;模拟器上运行的 Apps 可以连接到宿主电脑上的网络，但这是通过模拟器间接实现，不是直接连到宿主电脑的网卡。模拟器可以看作是宿主电脑上运行的一个普通程序。&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;因为模拟器的特殊网络配置，可能无法支持一些网络协议，比如 ping 命令使用的 ICMP 协议。目前，模拟器不支持 IGMP 和 multicast。&lt;/p&gt;
-
-    &lt;p&gt;&lt;em&gt;试验了一下，模拟器的 shell 里 &lt;code class=&quot;highlighter-rouge&quot;&gt;ping www.sogou.com&lt;/code&gt; 一直卡在那，在手机的 shell 里就可以。&lt;/em&gt;&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h2 id=&quot;额外的发现&quot;&gt;额外的发现&lt;/h2&gt;
-
-&lt;p&gt;在阅读 Android 官方文档里关于模拟器的章节时，意外地发现有一节 &lt;a href=&quot;https://developer.android.com/studio/run/emulator-networking.html#calling&quot;&gt;Sending a voice call or SMS to another emulator instance&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;就是说模拟器可以给另外的模拟器打电话和发短信，电话号码就是端口号，比如 emulator-5554 模拟器，电话号码就是 5554，这个号码也可以从模拟器的窗口标题栏上找到，比如 &lt;code class=&quot;highlighter-rouge&quot;&gt;Android Emulator - Nexus_5X_API_19:5554&lt;/code&gt;，里面那个 5554 就是。&lt;/p&gt;
-
-&lt;h2 id=&quot;后话&quot;&gt;后话&lt;/h2&gt;
-
-&lt;p&gt;天下博文，大部分都逃不出官方文档与公开源码的范畴（比如本文就是），而且都是选定文档里讲的某一小部分来进行讲解演绎，这在作为扩展视野、快速上手、快速解决问题等用途时还是比较实用的，但如果想系统、全面地学习，官方文档一般是更好的选择。&lt;/p&gt;</content><author><name>Zhuang Ma</name></author><summary type="html">本文解决的是一个小众场景的问题：</summary></entry><entry><title type="html">Android 源码分析 —— 从 Toast 出发</title><link href="http://localhost:4000/2017/11/12/start-from-toast/" rel="alternate" type="text/html" title="Android 源码分析 —— 从 Toast 出发" /><published>2017-11-12T00:00:00+08:00</published><updated>2017-11-12T00:00:00+08:00</updated><id>http://localhost:4000/2017/11/12/start-from-toast</id><content type="html" xml:base="http://localhost:4000/2017/11/12/start-from-toast/">&lt;p&gt;本系列文章在 &lt;a href=&quot;https://github.com/mzlogin/rtfsc-android&quot;&gt;https://github.com/mzlogin/rtfsc-android&lt;/a&gt; 持续更新中，欢迎有兴趣的童鞋们关注。&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.7.3">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2018-05-17T12:29:02+08:00</updated><id>http://localhost:4000/</id><title type="html">sopig’s blog</title><subtitle>sopig's blog</subtitle><author><name>sopig</name></author><entry><title type="html">Android 源码分析 —— 从 Toast 出发</title><link href="http://localhost:4000/2017/11/12/start-from-toast/" rel="alternate" type="text/html" title="Android 源码分析 —— 从 Toast 出发" /><published>2017-11-12T00:00:00+08:00</published><updated>2017-11-12T00:00:00+08:00</updated><id>http://localhost:4000/2017/11/12/start-from-toast</id><content type="html" xml:base="http://localhost:4000/2017/11/12/start-from-toast/">&lt;p&gt;本系列文章在 &lt;a href=&quot;https://github.com/mzlogin/rtfsc-android&quot;&gt;https://github.com/mzlogin/rtfsc-android&lt;/a&gt; 持续更新中，欢迎有兴趣的童鞋们关注。&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&quot;/images/posts/android/toast.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
@@ -1090,7 +900,7 @@ the notification manager shows toasts one at a time.
 
 &lt;p&gt;最后，照例要安利一下我的微信公众号「闷骚的程序员」，扫码关注，接收 rtfsc-android 的最近更新。&lt;/p&gt;
 
-&lt;div align=&quot;center&quot;&gt;&lt;img width=&quot;192px&quot; height=&quot;192px&quot; src=&quot;https://mazhuang.org/assets/images/qrcode.jpg&quot; /&gt;&lt;/div&gt;</content><author><name>Zhuang Ma</name></author><summary type="html">本系列文章在 https://github.com/mzlogin/rtfsc-android 持续更新中，欢迎有兴趣的童鞋们关注。</summary></entry><entry><title type="html">程序员节的过节姿势大全</title><link href="http://localhost:4000/2017/10/24/1024-poses/" rel="alternate" type="text/html" title="程序员节的过节姿势大全" /><published>2017-10-24T00:00:00+08:00</published><updated>2017-10-24T00:00:00+08:00</updated><id>http://localhost:4000/2017/10/24/1024-poses</id><content type="html" xml:base="http://localhost:4000/2017/10/24/1024-poses/">&lt;p&gt;今天是 10 月 24 日，不知道你的朋友圈有没有被程序员节刷屏，反正我的是被刷了。&lt;/p&gt;
+&lt;div align=&quot;center&quot;&gt;&lt;img width=&quot;192px&quot; height=&quot;192px&quot; src=&quot;https://mazhuang.org/assets/images/qrcode.jpg&quot; /&gt;&lt;/div&gt;</content><author><name>sopig</name></author><summary type="html">本系列文章在 https://github.com/mzlogin/rtfsc-android 持续更新中，欢迎有兴趣的童鞋们关注。</summary></entry><entry><title type="html">程序员节的过节姿势大全</title><link href="http://localhost:4000/2017/10/24/1024-poses/" rel="alternate" type="text/html" title="程序员节的过节姿势大全" /><published>2017-10-24T00:00:00+08:00</published><updated>2017-10-24T00:00:00+08:00</updated><id>http://localhost:4000/2017/10/24/1024-poses</id><content type="html" xml:base="http://localhost:4000/2017/10/24/1024-poses/">&lt;p&gt;今天是 10 月 24 日，不知道你的朋友圈有没有被程序员节刷屏，反正我的是被刷了。&lt;/p&gt;
 
 &lt;p&gt;看到 1024 这个数字，相信很多人都怀着特别的感情，比如我，游泳不会止步于 1000 米，肯定会补 24 米凑个整，跑步如果跑到 10 公里，那一定再多跑个 0.24 出来。&lt;/p&gt;
 
@@ -1178,7 +988,7 @@ the notification manager shows toasts one at a time.
 
 &lt;h2 id=&quot;后话&quot;&gt;后话&lt;/h2&gt;
 
-&lt;p&gt;好了，夜已深，打完收工。祝 WE 程序员们少熬夜，保住我们的发际线。&lt;/p&gt;</content><author><name>Zhuang Ma</name></author><summary type="html">今天是 10 月 24 日，不知道你的朋友圈有没有被程序员节刷屏，反正我的是被刷了。</summary></entry><entry><title type="html">发布一款光谷社区第三方 Android App</title><link href="http://localhost:4000/2017/10/14/guanggoo-android-app/" rel="alternate" type="text/html" title="发布一款光谷社区第三方 Android App" /><published>2017-10-14T00:00:00+08:00</published><updated>2017-10-14T00:00:00+08:00</updated><id>http://localhost:4000/2017/10/14/guanggoo-android-app</id><content type="html" xml:base="http://localhost:4000/2017/10/14/guanggoo-android-app/">&lt;p&gt;在过去的一个来月，我利用业余时间做了一款光谷社区的第三方 Android 客户端。&lt;/p&gt;
+&lt;p&gt;好了，夜已深，打完收工。祝 WE 程序员们少熬夜，保住我们的发际线。&lt;/p&gt;</content><author><name>sopig</name></author><summary type="html">今天是 10 月 24 日，不知道你的朋友圈有没有被程序员节刷屏，反正我的是被刷了。</summary></entry><entry><title type="html">发布一款光谷社区第三方 Android App</title><link href="http://localhost:4000/2017/10/14/guanggoo-android-app/" rel="alternate" type="text/html" title="发布一款光谷社区第三方 Android App" /><published>2017-10-14T00:00:00+08:00</published><updated>2017-10-14T00:00:00+08:00</updated><id>http://localhost:4000/2017/10/14/guanggoo-android-app</id><content type="html" xml:base="http://localhost:4000/2017/10/14/guanggoo-android-app/">&lt;p&gt;在过去的一个来月，我利用业余时间做了一款光谷社区的第三方 Android 客户端。&lt;/p&gt;
 
 &lt;h2 id=&quot;前言&quot;&gt;前言&lt;/h2&gt;
 
@@ -1268,7 +1078,7 @@ the notification manager shows toasts one at a time.
 
 &lt;p&gt;好了，最后照例安利一下我自己的微信公众号，近期专注 Java、Android 相关的技术分享，如果你感兴趣，可以关注一下接收最新动态。&lt;/p&gt;
 
-&lt;div align=&quot;center&quot;&gt;&lt;img width=&quot;192px&quot; height=&quot;192px&quot; src=&quot;https://mazhuang.org/assets/images/qrcode.jpg&quot; /&gt;&lt;/div&gt;</content><author><name>Zhuang Ma</name></author><summary type="html">在过去的一个来月，我利用业余时间做了一款光谷社区的第三方 Android 客户端。</summary></entry><entry><title type="html">阅读源码的意义与方法</title><link href="http://localhost:4000/2017/10/05/rtfsc-methods-and-meaning/" rel="alternate" type="text/html" title="阅读源码的意义与方法" /><published>2017-10-05T00:00:00+08:00</published><updated>2017-10-05T00:00:00+08:00</updated><id>http://localhost:4000/2017/10/05/rtfsc-methods-and-meaning</id><content type="html" xml:base="http://localhost:4000/2017/10/05/rtfsc-methods-and-meaning/">&lt;p&gt;思索了这两个问题良久，也去知乎找了一些相关话题的问答，但并没有标准答案。所以，我这里也只是记录一些我对此的看法，也许会随着 RTFSC 阅历的丰富而发生变化，我会记录更新于 &lt;a href=&quot;https://github.com/mzlogin/rtfsc-android&quot;&gt;https://github.com/mzlogin/rtfsc-android&lt;/a&gt;。&lt;/p&gt;
+&lt;div align=&quot;center&quot;&gt;&lt;img width=&quot;192px&quot; height=&quot;192px&quot; src=&quot;https://mazhuang.org/assets/images/qrcode.jpg&quot; /&gt;&lt;/div&gt;</content><author><name>sopig</name></author><summary type="html">在过去的一个来月，我利用业余时间做了一款光谷社区的第三方 Android 客户端。</summary></entry><entry><title type="html">阅读源码的意义与方法</title><link href="http://localhost:4000/2017/10/05/rtfsc-methods-and-meaning/" rel="alternate" type="text/html" title="阅读源码的意义与方法" /><published>2017-10-05T00:00:00+08:00</published><updated>2017-10-05T00:00:00+08:00</updated><id>http://localhost:4000/2017/10/05/rtfsc-methods-and-meaning</id><content type="html" xml:base="http://localhost:4000/2017/10/05/rtfsc-methods-and-meaning/">&lt;p&gt;思索了这两个问题良久，也去知乎找了一些相关话题的问答，但并没有标准答案。所以，我这里也只是记录一些我对此的看法，也许会随着 RTFSC 阅历的丰富而发生变化，我会记录更新于 &lt;a href=&quot;https://github.com/mzlogin/rtfsc-android&quot;&gt;https://github.com/mzlogin/rtfsc-android&lt;/a&gt;。&lt;/p&gt;
 
 &lt;h2 id=&quot;意义&quot;&gt;意义&lt;/h2&gt;
 
@@ -1321,7 +1131,7 @@ the notification manager shows toasts one at a time.
 
 &lt;p&gt;对我的文章感兴趣的朋友，可以关注我的微信公众号 isprogrammer，接收我的更新通知。&lt;/p&gt;
 
-&lt;div align=&quot;center&quot;&gt;&lt;img width=&quot;192px&quot; height=&quot;192px&quot; src=&quot;https://mazhuang.org/assets/images/qrcode.jpg&quot; /&gt;&lt;/div&gt;</content><author><name>Zhuang Ma</name></author><summary type="html">思索了这两个问题良久，也去知乎找了一些相关话题的问答，但并没有标准答案。所以，我这里也只是记录一些我对此的看法，也许会随着 RTFSC 阅历的丰富而发生变化，我会记录更新于 https://github.com/mzlogin/rtfsc-android。</summary></entry><entry><title type="html">Android 源码分析开篇</title><link href="http://localhost:4000/2017/09/23/rtfsc-android-start/" rel="alternate" type="text/html" title="Android 源码分析开篇" /><published>2017-09-23T00:00:00+08:00</published><updated>2017-09-23T00:00:00+08:00</updated><id>http://localhost:4000/2017/09/23/rtfsc-android-start</id><content type="html" xml:base="http://localhost:4000/2017/09/23/rtfsc-android-start/">&lt;p&gt;在心中谋划已久的此事终于要开篇了，虽然迟了点，十年前没有种的树，就从现在开始种吧。&lt;/p&gt;
+&lt;div align=&quot;center&quot;&gt;&lt;img width=&quot;192px&quot; height=&quot;192px&quot; src=&quot;https://mazhuang.org/assets/images/qrcode.jpg&quot; /&gt;&lt;/div&gt;</content><author><name>sopig</name></author><summary type="html">思索了这两个问题良久，也去知乎找了一些相关话题的问答，但并没有标准答案。所以，我这里也只是记录一些我对此的看法，也许会随着 RTFSC 阅历的丰富而发生变化，我会记录更新于 https://github.com/mzlogin/rtfsc-android。</summary></entry><entry><title type="html">Android 源码分析开篇</title><link href="http://localhost:4000/2017/09/23/rtfsc-android-start/" rel="alternate" type="text/html" title="Android 源码分析开篇" /><published>2017-09-23T00:00:00+08:00</published><updated>2017-09-23T00:00:00+08:00</updated><id>http://localhost:4000/2017/09/23/rtfsc-android-start</id><content type="html" xml:base="http://localhost:4000/2017/09/23/rtfsc-android-start/">&lt;p&gt;在心中谋划已久的此事终于要开篇了，虽然迟了点，十年前没有种的树，就从现在开始种吧。&lt;/p&gt;
 
 &lt;p&gt;自 2014 年底从 Windows 开发转向 Android 开发以后，到现在的两年多时间里，也陆陆续续看了一些强相关的书籍和教程，按我在豆瓣标记的时间顺序：&lt;/p&gt;
 
@@ -1431,7 +1241,7 @@ the notification manager shows toasts one at a time.
 
 &lt;div align=&quot;center&quot;&gt;&lt;img width=&quot;192px&quot; height=&quot;192px&quot; src=&quot;https://mazhuang.org/assets/images/qrcode.jpg&quot; /&gt;&lt;/div&gt;
 
-&lt;p&gt;后续相关的系列文章，会在 GitHub 仓库 &lt;a href=&quot;https://github.com/mzlogin/rtfsc-android&quot;&gt;mzlogin/rtfsc-android&lt;/a&gt; 汇总更新，欢迎关注，看我起高楼，或是啪啪打脸。&lt;/p&gt;</content><author><name>Zhuang Ma</name></author><summary type="html">在心中谋划已久的此事终于要开篇了，虽然迟了点，十年前没有种的树，就从现在开始种吧。</summary></entry><entry><title type="html">图解 SQL 里的各种 JOIN</title><link href="http://localhost:4000/2017/09/11/joins-in-sql/" rel="alternate" type="text/html" title="图解 SQL 里的各种 JOIN" /><published>2017-09-11T00:00:00+08:00</published><updated>2017-09-11T00:00:00+08:00</updated><id>http://localhost:4000/2017/09/11/joins-in-sql</id><content type="html" xml:base="http://localhost:4000/2017/09/11/joins-in-sql/">&lt;p&gt;从业以来主要在做客户端，用到的数据库都是表结构比较简单的 SQLite，以我那还给老师一大半的 SQL 水平倒也能对付。现在偶尔需要到后台的 SQL Server 里追查一些数据问题，就显得有点捉襟见肘了，特别是各种 JOIN，有时候傻傻分不清楚，于是索性弄明白并做个记录。&lt;/p&gt;
+&lt;p&gt;后续相关的系列文章，会在 GitHub 仓库 &lt;a href=&quot;https://github.com/mzlogin/rtfsc-android&quot;&gt;mzlogin/rtfsc-android&lt;/a&gt; 汇总更新，欢迎关注，看我起高楼，或是啪啪打脸。&lt;/p&gt;</content><author><name>sopig</name></author><summary type="html">在心中谋划已久的此事终于要开篇了，虽然迟了点，十年前没有种的树，就从现在开始种吧。</summary></entry><entry><title type="html">图解 SQL 里的各种 JOIN</title><link href="http://localhost:4000/2017/09/11/joins-in-sql/" rel="alternate" type="text/html" title="图解 SQL 里的各种 JOIN" /><published>2017-09-11T00:00:00+08:00</published><updated>2017-09-11T00:00:00+08:00</updated><id>http://localhost:4000/2017/09/11/joins-in-sql</id><content type="html" xml:base="http://localhost:4000/2017/09/11/joins-in-sql/">&lt;p&gt;从业以来主要在做客户端，用到的数据库都是表结构比较简单的 SQLite，以我那还给老师一大半的 SQL 水平倒也能对付。现在偶尔需要到后台的 SQL Server 里追查一些数据问题，就显得有点捉襟见肘了，特别是各种 JOIN，有时候傻傻分不清楚，于是索性弄明白并做个记录。&lt;/p&gt;
 
 &lt;h2 id=&quot;前言&quot;&gt;前言&lt;/h2&gt;
 
@@ -1821,7 +1631,7 @@ OR B.PK IS NULL' at line 4
   &lt;li&gt;&lt;a href=&quot;https://stackoverflow.com/questions/4796872/how-to-do-a-full-outer-join-in-mysql&quot;&gt;How to do a FULL OUTER JOIN in MySQL?&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;https://www.w3resource.com/slides/sql-joins-slide-presentation.php&quot;&gt;SQL JOINS Slide Presentation&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;https://www.w3resource.com/sql/joins/perform-a-self-join.php&quot;&gt;SQL Self Join&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>Zhuang Ma</name></author><summary type="html">从业以来主要在做客户端，用到的数据库都是表结构比较简单的 SQLite，以我那还给老师一大半的 SQL 水平倒也能对付。现在偶尔需要到后台的 SQL Server 里追查一些数据问题，就显得有点捉襟见肘了，特别是各种 JOIN，有时候傻傻分不清楚，于是索性弄明白并做个记录。</summary></entry><entry><title type="html">关于 Markdown 的一些奇技淫巧</title><link href="http://localhost:4000/2017/09/01/markdown-odd-skills/" rel="alternate" type="text/html" title="关于 Markdown 的一些奇技淫巧" /><published>2017-09-01T00:00:00+08:00</published><updated>2017-09-01T00:00:00+08:00</updated><id>http://localhost:4000/2017/09/01/markdown-odd-skills</id><content type="html" xml:base="http://localhost:4000/2017/09/01/markdown-odd-skills/">&lt;p&gt;自从几年前开始在 GitHub 玩耍，接触到 Markdown 之后，就一发不可收拾，在各种文档编辑上，有条件用 Markdown 的尽量用，不能用的创造条件也要用——README、博客、公众号、接口文档等等全都是，比如当前这篇文章就是用 Markdown 编辑而成。&lt;/p&gt;
+&lt;/ul&gt;</content><author><name>sopig</name></author><summary type="html">从业以来主要在做客户端，用到的数据库都是表结构比较简单的 SQLite，以我那还给老师一大半的 SQL 水平倒也能对付。现在偶尔需要到后台的 SQL Server 里追查一些数据问题，就显得有点捉襟见肘了，特别是各种 JOIN，有时候傻傻分不清楚，于是索性弄明白并做个记录。</summary></entry><entry><title type="html">关于 Markdown 的一些奇技淫巧</title><link href="http://localhost:4000/2017/09/01/markdown-odd-skills/" rel="alternate" type="text/html" title="关于 Markdown 的一些奇技淫巧" /><published>2017-09-01T00:00:00+08:00</published><updated>2017-09-01T00:00:00+08:00</updated><id>http://localhost:4000/2017/09/01/markdown-odd-skills</id><content type="html" xml:base="http://localhost:4000/2017/09/01/markdown-odd-skills/">&lt;p&gt;自从几年前开始在 GitHub 玩耍，接触到 Markdown 之后，就一发不可收拾，在各种文档编辑上，有条件用 Markdown 的尽量用，不能用的创造条件也要用——README、博客、公众号、接口文档等等全都是，比如当前这篇文章就是用 Markdown 编辑而成。&lt;/p&gt;
 
 &lt;p&gt;这几年也发现越来越多的网站和程序提供了对 Markdown 的支持，从最初接触的 GitHub、Jekyll，到简书、掘金、CSDN 等等，由此也从别人做得好的文档中，学到了一些『奇技淫巧』，所以本文不是对 Markdown 基础语法的介绍，而是一些相对高级、能将 Markdown 玩出更多花样的小技巧。&lt;/p&gt;
 
@@ -2049,7 +1859,7 @@ N 与图片高度有关。
 &lt;ul&gt;
   &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/matiassingers/awesome-readme/master/readme.md&quot;&gt;https://raw.githubusercontent.com/matiassingers/awesome-readme/master/readme.md&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;https://www.zybuluo.com/songpfei/note/247346&quot;&gt;https://www.zybuluo.com/songpfei/note/247346&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>Zhuang Ma</name></author><summary type="html">自从几年前开始在 GitHub 玩耍，接触到 Markdown 之后，就一发不可收拾，在各种文档编辑上，有条件用 Markdown 的尽量用，不能用的创造条件也要用——README、博客、公众号、接口文档等等全都是，比如当前这篇文章就是用 Markdown 编辑而成。</summary></entry><entry><title type="html">从一个 NullPointerException 探究 Java 的自动装箱拆箱机制</title><link href="http://localhost:4000/2017/08/20/java-auto-boxing-unboxing/" rel="alternate" type="text/html" title="从一个 NullPointerException 探究 Java 的自动装箱拆箱机制" /><published>2017-08-20T00:00:00+08:00</published><updated>2017-08-20T00:00:00+08:00</updated><id>http://localhost:4000/2017/08/20/java-auto-boxing-unboxing</id><content type="html" xml:base="http://localhost:4000/2017/08/20/java-auto-boxing-unboxing/">&lt;p&gt;前天遇到了一个 NullPointerException，触发的代码类似下面这样：&lt;/p&gt;
+&lt;/ul&gt;</content><author><name>sopig</name></author><summary type="html">自从几年前开始在 GitHub 玩耍，接触到 Markdown 之后，就一发不可收拾，在各种文档编辑上，有条件用 Markdown 的尽量用，不能用的创造条件也要用——README、博客、公众号、接口文档等等全都是，比如当前这篇文章就是用 Markdown 编辑而成。</summary></entry><entry><title type="html">从一个 NullPointerException 探究 Java 的自动装箱拆箱机制</title><link href="http://localhost:4000/2017/08/20/java-auto-boxing-unboxing/" rel="alternate" type="text/html" title="从一个 NullPointerException 探究 Java 的自动装箱拆箱机制" /><published>2017-08-20T00:00:00+08:00</published><updated>2017-08-20T00:00:00+08:00</updated><id>http://localhost:4000/2017/08/20/java-auto-boxing-unboxing</id><content type="html" xml:base="http://localhost:4000/2017/08/20/java-auto-boxing-unboxing/">&lt;p&gt;前天遇到了一个 NullPointerException，触发的代码类似下面这样：&lt;/p&gt;
 
 &lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Test&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
     &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;long&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;test&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;long&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
@@ -2496,4 +2306,4 @@ N 与图片高度有关。
 &lt;ul&gt;
   &lt;li&gt;&lt;a href=&quot;http://droidyue.com/blog/2015/04/07/autoboxing-and-autounboxing-in-java/index.html&quot;&gt;Java中的自动装箱与拆箱&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;http://www.cnblogs.com/dolphin0520/p/3780005.html&quot;&gt;深入剖析Java中的装箱和拆箱&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>Zhuang Ma</name></author><summary type="html">前天遇到了一个 NullPointerException，触发的代码类似下面这样：</summary></entry></feed>
+&lt;/ul&gt;</content><author><name>sopig</name></author><summary type="html">前天遇到了一个 NullPointerException，触发的代码类似下面这样：</summary></entry></feed>
